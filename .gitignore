@@ -1,0 +1,5 @@
+.virtualenv/
+.pytest_cache/
+.vscode/
+flask_params.egg-info/
+__pycache__/
