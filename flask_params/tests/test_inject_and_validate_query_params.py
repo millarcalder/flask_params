@@ -39,3 +39,8 @@ def test_invalid_kwarg(flask_client: FlaskClient):
             }
         }
     }
+
+
+def test_arg_with_no_type_hinting(flask_client: FlaskClient):
+    res = flask_client.get("/no_type_hinting?arg=123&kwarg=hello")
+    assert res.status_code == 200

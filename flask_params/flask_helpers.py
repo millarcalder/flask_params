@@ -27,7 +27,7 @@ def inject_query_params(ignore_args: list[str] = []):
             # Look for missing args
             missing_args = []
             for key, param in sig_params.items():
-                if param.default == inspect._empty and key not in flask.request.args:
+                if param.default is inspect._empty and key not in flask.request.args:
                     missing_args.append(key)
 
             # Uh oh!

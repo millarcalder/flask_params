@@ -9,13 +9,13 @@ register_error_handlers(app)
 
 
 @app.route("/foo")
-@inject_query_params
+@inject_query_params()
 def foo(arg: str, kwarg: int = 123) -> dict:
     return {"arg": arg, "kwarg": kwarg}
 
 
 @app.route("/strict_foo")
-@inject_and_validate_query_params
+@inject_and_validate_query_params()
 def strict_foo(arg: str, kwarg: int = 123) -> dict:
     return {"arg": arg, "kwarg": kwarg}
 

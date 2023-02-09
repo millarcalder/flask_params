@@ -19,6 +19,9 @@ def _type_check(val: any, param: Parameter) -> _TypeCheckResponse:
     val_type = type(val)
     expected_type = param.annotation
 
+    if expected_type is inspect._empty:
+        return _TypeCheckResponse(valid=True, val=val)
+
     try:
         if val_type == expected_type:
             return _TypeCheckResponse(valid=True, val=val)
