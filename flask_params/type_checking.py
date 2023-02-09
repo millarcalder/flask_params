@@ -11,7 +11,7 @@ from flask_params.exceptions import TypeCheckException
 @dataclass
 class _TypeCheckResponse:
     valid: bool
-    casted_val: Any = None
+    val: Any = None
     error: dict | None = None
 
 
@@ -20,7 +20,15 @@ def _type_check(val: any, param: Parameter) -> _TypeCheckResponse:
     expected_type = param.annotation
 
     try:
-        return _TypeCheckResponse(valid=True, casted_val=expected_type(val))
+        if val_type == expected_type:
+            return _TypeCheckResponse(valid=True, val=val)
+
+        # Only try casting to primitive types
+        elif expected_type in (int, str, bool):
+            return _TypeCheckResponse(valid=True, val=expected_type(val))
+
+        else:
+            raise TypeError
     except:
         return _TypeCheckResponse(
             valid=False,
@@ -30,7 +38,10 @@ def _type_check(val: any, param: Parameter) -> _TypeCheckResponse:
 
 def validate_arguments(func):
     """
-    Checks the types of each arg and kwarg, if an arg is not of the correct type it attempts to cast the value to the correct type.
+    Checks the types of each arg and kwarg, if an argument is not of the correct type it attempts to cast the value to
+    the correct type.
+
+    Note: only attempts to cast to primitive types.
     """
 
     @functools.wraps(func)
@@ -58,7 +69,7 @@ def validate_arguments(func):
             res = _type_check(val, param)
 
             if res.valid:
-                casted_args.append(res.casted_val)
+                casted_args.append(res.val)
             else:
                 errors[param.name] = res.error
 
@@ -74,7 +85,7 @@ def validate_arguments(func):
             res = _type_check(val, param)
 
             if res.valid:
-                casted_kwargs[key] = res.casted_val
+                casted_kwargs[key] = res.val
             else:
                 errors[key] = res.error
 
