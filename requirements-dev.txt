@@ -1,3 +1,5 @@
 black
+build
 pytest
 setuptools
+sphinx
