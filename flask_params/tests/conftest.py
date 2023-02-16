@@ -27,24 +27,23 @@ def flask_app():
 
     @app.route("/foo")
     @inject_context
-    @inject_query_params(ignore_args=['ctx'])
+    @inject_query_params(ignore_args=["ctx"])
     def foo(ctx, arg: str, kwarg: int = 123) -> dict:
-        assert ctx.env == 'testing'
+        assert ctx.env == "testing"
         return {"arg": arg, "kwarg": kwarg}
 
     @app.route("/strict_foo")
     @inject_context
-    @inject_and_validate_query_params(ignore_args=['ctx'])
+    @inject_and_validate_query_params(ignore_args=["ctx"])
     def foo_strict(ctx, arg: str, kwarg: int = 123) -> dict:
-        assert ctx.env == 'testing'
+        assert ctx.env == "testing"
         return {"arg": arg, "kwarg": kwarg}
-
 
     @app.route("/no_type_hinting")
     @inject_context
-    @inject_and_validate_query_params(ignore_args=['ctx'])
-    def no_type_hinting(ctx, arg, kwarg = 123) -> dict:
-        assert ctx.env == 'testing'
+    @inject_and_validate_query_params(ignore_args=["ctx"])
+    def no_type_hinting(ctx, arg, kwarg=123) -> dict:
+        assert ctx.env == "testing"
         return {"arg": arg, "kwarg": kwarg}
 
     yield app

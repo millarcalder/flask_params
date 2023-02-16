@@ -12,6 +12,7 @@ class TypeCheckException(Exception):
     :param errors: Contains information about the type errors.
     :type errors: dict
     """
+
     def __init__(self, errors: dict):
         self.errors = errors
 
@@ -25,6 +26,7 @@ class ArgsException(Exception):
     :param missing_args: Names of the missing required arguments.
     :type missing_args: list[str]
     """
+
     def __init__(self, extra_args: list[str], missing_args: list[str]):
         self.extra_args = extra_args
         self.missing_args = missing_args
@@ -45,6 +47,7 @@ def register_error_handlers(app: Flask):
 
     :param app: Flask app to register error handlers on.
     """
+
     @app.errorhandler(TypeCheckException)
     def handle_validation_error(e: TypeCheckException):
         # don't want to go adding a custom json encoder to the entire flask application

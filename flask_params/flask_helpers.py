@@ -10,7 +10,7 @@ def inject_query_params(ignore_args: list[str] = []):
     """
     Decorator that injects URL query parameters into flask a route function.
 
-    Injected parameters will always be strings unless the parameter is not supplied and the default value of a kwarg 
+    Injected parameters will always be strings unless the parameter is not supplied and the default value of a kwarg
     is used. Parameters are always injected as named arguments, so you don't need to be as careful in which order you
     use this decorator.
 
@@ -19,11 +19,16 @@ def inject_query_params(ignore_args: list[str] = []):
     :type ignore_args: list[str] = []
     :raise ArgsException: If any missing or extra arguments are supplied in the URL query parameters.
     """
+
     def constructor(func):
         @functools.wraps(func)
         def wrapper(*args, **kwargs):
             sig = inspect.signature(func)
-            sig_params = {key: param for key, param in sig.parameters.items() if key not in ignore_args}
+            sig_params = {
+                key: param
+                for key, param in sig.parameters.items()
+                if key not in ignore_args
+            }
 
             # Look for extra args
             extra_args = []
@@ -60,6 +65,8 @@ def inject_and_validate_query_params(ignore_args: list[str] = []):
     :raise ArgsException: If any missing or extra arguments are supplied in the URL query parameters.
     :raise TypeCheckException: If any arguments fail the type check.
     """
+
     def constructor(func):
         return inject_query_params(ignore_args=ignore_args)(validate_arguments(func))
+
     return constructor
