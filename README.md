@@ -2,6 +2,8 @@
 
 This library defines some decorators to be used with [Flask](https://flask.palletsprojects.com/) to inject URL query parameters as arguments into route functions. You can optionally perform type checking of the parameters at based on the signature of the route function.
 
+[Documentation](http://flask-params-docs.s3-website-ap-southeast-2.amazonaws.com/)
+
 ## Example Usage
 
 ```python
