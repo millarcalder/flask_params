@@ -22,3 +22,9 @@ run-demo:
 
 format:
 	@python3 -m black ./flask_params
+
+build:
+	@python3 -m build
+
+generate-html-docs:
+	@sphinx-build -b html ./docs ./docs/_build

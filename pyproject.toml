@@ -1,3 +1,20 @@
 [build-system]
-requires = ["setuptools", "wheel"]
+requires = ["setuptools"]
 build-backend = "setuptools.build_meta"
+
+[project]
+name = "flask-params"
+readme = "README.md"
+keywords = ["flask"]
+version = "0.0.1"
+requires-python = ">=3.7"
+classifiers = [
+    "Programming Language :: Python :: 3",
+]
+dependencies = [
+    "flask",
+    'importlib-metadata; python_version>="3.7"',
+]
+
+[tool.setuptools]
+packages = ["flask_params"]
