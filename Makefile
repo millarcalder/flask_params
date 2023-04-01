@@ -2,9 +2,6 @@ SHELL := /bin/bash
 
 VERSION=0.0.1
 
-install-system-dependencies:
-	@sudo apt install python3.10-venv
-
 developer-setup: setup-python-venv
 
 setup-python-venv:
@@ -15,16 +12,21 @@ setup-python-venv:
 	pip3 install -e .
 
 run-tests:
-	@python3 -m pytest flask_params/
+	@source .virtualenv/bin/activate; \
+	python3 -m pytest flask_params/
 
 run-demo:
-	@python3 -m demo.app
+	@source .virtualenv/bin/activate; \
+	python3 -m demo.app
 
 format:
-	@python3 -m black ./flask_params
+	@source .virtualenv/bin/activate; \
+	python3 -m black ./flask_params
 
 build:
-	@python3 -m build
+	@source .virtualenv/bin/activate; \
+	python3 -m build
 
 generate-html-docs:
-	@sphinx-build -b html ./docs ./docs/_build
+	@source .virtualenv/bin/activate; \
+	sphinx-build -b html ./docs ./docs/_build

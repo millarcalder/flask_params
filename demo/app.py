@@ -10,7 +10,7 @@ register_error_handlers(app)
 
 @app.route("/foo")
 @inject_query_params()
-def foo(arg: str, kwarg: int = 123) -> dict:
+def foo(arg, kwarg = 123) -> dict:
     return {"arg": arg, "kwarg": kwarg}
 
 
