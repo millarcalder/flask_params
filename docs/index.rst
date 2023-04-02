@@ -1,5 +1,5 @@
-Flask Params
-============
+Flask Parameters
+================
 
 .. toctree::
    :maxdepth: 2
