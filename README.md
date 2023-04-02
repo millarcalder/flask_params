@@ -1,4 +1,4 @@
-# Flask Params
+# Flask Parameters
 
 This library defines some decorators to be used with [Flask](https://flask.palletsprojects.com/) to inject URL query parameters as arguments into route functions. You can optionally perform type checking of the parameters based on the signature of the route function.
 
@@ -9,9 +9,9 @@ This library defines some decorators to be used with [Flask](https://flask.palle
 ```python
 import flask
 
-from flask_params import inject_query_params
-from flask_params import inject_and_validate_query_params
-from flask_params import register_error_handlers
+from flask_parameters import inject_query_params
+from flask_parameters import inject_and_validate_query_params
+from flask_parameters import register_error_handlers
 
 app = flask.Flask(__name__)
 register_error_handlers(app)

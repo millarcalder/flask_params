@@ -5,7 +5,7 @@ from dataclasses import dataclass
 from inspect import Parameter
 from typing import Any
 
-from flask_params.exceptions import TypeCheckException
+from flask_parameters.exceptions import TypeCheckException
 
 
 @dataclass

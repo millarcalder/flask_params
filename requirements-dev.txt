@@ -3,3 +3,4 @@ build
 pytest
 setuptools
 sphinx
+twine

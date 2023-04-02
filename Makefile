@@ -13,7 +13,7 @@ setup-python-venv:
 
 run-tests:
 	@source .virtualenv/bin/activate; \
-	python3 -m pytest flask_params/
+	python3 -m pytest flask_parameters/
 
 run-demo:
 	@source .virtualenv/bin/activate; \
@@ -21,7 +21,7 @@ run-demo:
 
 format:
 	@source .virtualenv/bin/activate; \
-	python3 -m black ./flask_params
+	python3 -m black ./flask_parameters
 
 build:
 	@source .virtualenv/bin/activate; \

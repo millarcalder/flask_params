@@ -2,8 +2,8 @@ import flask
 import functools
 import inspect
 
-from flask_params.exceptions import ArgsException
-from flask_params.type_checking import validate_arguments
+from flask_parameters.exceptions import ArgsException
+from flask_parameters.type_checking import validate_arguments
 
 
 def inject_query_params(ignore_args: list[str] = []):

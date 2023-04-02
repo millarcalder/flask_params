@@ -1,6 +1,7 @@
+.DS_Store
 .virtualenv/
 .pytest_cache/
 .vscode/
 __pycache__/
 dist/
-flask_params.egg-info/
+flask_parameters.egg-info/

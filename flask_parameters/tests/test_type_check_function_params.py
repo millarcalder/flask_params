@@ -1,6 +1,6 @@
 import pytest
-from flask_params.type_checking import validate_arguments
-from flask_params.exceptions import TypeCheckException
+from flask_parameters.type_checking import validate_arguments
+from flask_parameters.exceptions import TypeCheckException
 
 
 @pytest.mark.parametrize(

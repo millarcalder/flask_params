@@ -1,8 +1,8 @@
 import flask
 
-from flask_params import inject_query_params
-from flask_params import inject_and_validate_query_params
-from flask_params import register_error_handlers
+from flask_parameters import inject_query_params
+from flask_parameters import inject_and_validate_query_params
+from flask_parameters import register_error_handlers
 
 app = flask.Flask(__name__)
 register_error_handlers(app)

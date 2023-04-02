@@ -41,7 +41,7 @@ class _TypeJsonEncoder(json.JSONEncoder):
 
 def register_error_handlers(app: Flask):
     """
-    Register error handlers on the flask app for the flask_params exceptions.
+    Register error handlers on the flask app for the flask_parameters exceptions.
 
     TypeCheckException and ArgsException will both return an HTTP status code of 400 with a JSON response.
 
