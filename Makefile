@@ -32,7 +32,9 @@ generate-html-docs:
 	sphinx-build -b html ./docs ./docs/_build
 
 release-testing: build
-	@python -m twine upload --repository testpypi dist/*
+	@source .virtualenv/bin/activate; \
+	python -m twine upload --repository testpypi dist/*
 
 release-production: build
-	@python -m twine upload dist/*
+	@source .virtualenv/bin/activate; \
+	python -m twine upload dist/*
