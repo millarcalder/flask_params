@@ -44,3 +44,20 @@ def test_invalid_kwarg(flask_client: FlaskClient):
 def test_arg_with_no_type_hinting(flask_client: FlaskClient):
     res = flask_client.get("/no_type_hinting?arg=123&kwarg=hello")
     assert res.status_code == 200
+
+
+def test_url_arguments(flask_client: FlaskClient):
+    res = flask_client.get("/url_arguments/123?arg=hello&kwarg=456")
+    assert res.status_code == 200
+    assert res.json == {"url_argument": 123, "arg": "hello", "kwarg": 456}
+
+
+def test_url_arguments_with_invalid_url_argument(flask_client: FlaskClient):
+    res = flask_client.get("/url_arguments/invalid?arg=hello&kwarg=456")
+    assert res.status_code == 404
+
+
+def test_url_arguments_with_extra_arg(flask_client: FlaskClient):
+    res = flask_client.get("/url_arguments/123?arg=hello&kwarg=456&url_argument=456")
+    assert res.status_code == 400
+    assert res.json == {"extra_args": ["url_argument"]}

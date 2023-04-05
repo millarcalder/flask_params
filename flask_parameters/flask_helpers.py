@@ -28,6 +28,8 @@ def inject_query_params(ignore_args: list[str] = []):
                 key: param
                 for key, param in sig.parameters.items()
                 if key not in ignore_args
+                # Also ignore URL arguments
+                and key not in flask.request.url_rule.arguments
             }
 
             # Look for extra args

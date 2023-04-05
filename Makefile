@@ -1,6 +1,6 @@
 SHELL := /bin/bash
 
-VERSION=0.0.1
+VERSION=0.0.2
 
 developer-setup: setup-python-venv
 

@@ -1,7 +1,7 @@
 project = 'flask_parameters'
 copyright = '2023, Millar Calder'
 author = 'Millar Calder'
-release = '0.0.1'
+release = '0.0.2'
 
 extensions = ['sphinx.ext.autodoc', 'sphinx.ext.autosummary']
 

@@ -46,6 +46,13 @@ def flask_app():
         assert ctx.env == "testing"
         return {"arg": arg, "kwarg": kwarg}
 
+    @app.route("/url_arguments/<int:url_argument>")
+    @inject_context
+    @inject_and_validate_query_params(ignore_args=["ctx"])
+    def url_arguments(ctx, url_argument: int, arg: str, kwarg: int = 123) -> dict:
+        assert ctx.env == "testing"
+        return {"url_argument": url_argument, "arg": arg, "kwarg": kwarg}
+
     yield app
 
 
