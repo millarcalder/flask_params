@@ -1,6 +1,7 @@
 import functools
 import inspect
 
+from typing import Optional
 from dataclasses import dataclass
 from inspect import Parameter
 from typing import Any
@@ -12,7 +13,7 @@ from flask_parameters.exceptions import TypeCheckException
 class _TypeCheckResponse:
     valid: bool
     val: Any = None
-    error: dict | None = None
+    error: Optional[dict] = None
 
 
 def _type_check(val: any, param: Parameter) -> _TypeCheckResponse:

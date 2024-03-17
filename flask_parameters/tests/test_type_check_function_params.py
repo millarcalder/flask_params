@@ -9,8 +9,7 @@ from flask_parameters.exceptions import TypeCheckException
 )
 def test_missing_args(args, kwargs):
     @validate_arguments
-    def some_func(arg1: str, arg2: str, kwarg: int = 123):
-        ...
+    def some_func(arg1: str, arg2: str, kwarg: int = 123): ...
 
     with pytest.raises(TypeError):
         some_func(*args, **kwargs)
@@ -27,8 +26,7 @@ def test_missing_args(args, kwargs):
 )
 def test_extra_args(args, kwargs):
     @validate_arguments
-    def some_func(arg1: str, kwarg: int = 123):
-        ...
+    def some_func(arg1: str, kwarg: int = 123): ...
 
     with pytest.raises(TypeError):
         some_func(*args, **kwargs)
@@ -60,8 +58,7 @@ def test_invalid_types():
     """
 
     @validate_arguments
-    def some_func(int_arg: int, float_arg: float, list_arg: list, dict_arg: dict):
-        ...
+    def some_func(int_arg: int, float_arg: float, list_arg: list, dict_arg: dict): ...
 
     with pytest.raises(TypeCheckException) as err:
         some_func("3.2", "foo", list_arg=123, dict_arg=3.2)
@@ -81,8 +78,7 @@ def test_invalid_type_and_extra_arg():
     """
 
     @validate_arguments
-    def some_func(arg: int):
-        ...
+    def some_func(arg: int): ...
 
     with pytest.raises(TypeCheckException):
         some_func("foo", "bar")

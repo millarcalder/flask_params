@@ -1,5 +1,6 @@
 import json
 
+from typing import List
 from flask import Flask
 from flask import jsonify
 from typing import Any
@@ -27,7 +28,7 @@ class ArgsException(Exception):
     :type missing_args: list[str]
     """
 
-    def __init__(self, extra_args: list[str], missing_args: list[str]):
+    def __init__(self, extra_args: List[str], missing_args: List[str]):
         self.extra_args = extra_args
         self.missing_args = missing_args
 

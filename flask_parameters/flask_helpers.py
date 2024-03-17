@@ -2,11 +2,12 @@ import flask
 import functools
 import inspect
 
+from typing import List
 from flask_parameters.exceptions import ArgsException
 from flask_parameters.type_checking import validate_arguments
 
 
-def inject_query_params(ignore_args: list[str] = []):
+def inject_query_params(ignore_args: List[str] = []):
     """
     Decorator that injects URL query parameters into flask a route function.
 
@@ -56,7 +57,7 @@ def inject_query_params(ignore_args: list[str] = []):
     return constructor
 
 
-def inject_and_validate_query_params(ignore_args: list[str] = []):
+def inject_and_validate_query_params(ignore_args: List[str] = []):
     """
     An extension of `inject_query_params` that also performs type checking of function arguments based on the signature
     of the function.
