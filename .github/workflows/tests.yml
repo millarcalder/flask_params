@@ -1,0 +1,20 @@
+name: tests
+run-name: Run tests on pull reqeusts and pushes to the main branch
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+    types:
+      - opened
+      - synchronize
+      - reopened
+jobs:
+  tests:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - name: build docker image
+        run: docker build --file Dockerfile.dev --tag flask-params-tests .
+      - name: run tests
+        run: docker run -v ".:/code:ro" --name test flask-params-tests /bin/bash -c "source ~/.bash_profile && /code/run-tests-all-py-versions.sh"
