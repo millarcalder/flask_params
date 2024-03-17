@@ -22,7 +22,7 @@ do
         echo "skipping .virtualenv-$ver because it already exists"
     else
         echo "building .virtualenv-$ver..."
-        pyenv shell $ver
+        pyenv global $ver
         python -m venv .virtualenv-$ver/
         .virtualenv-$ver/bin/pip install -r requirements.txt
         .virtualenv-$ver/bin/pip install -r requirements-dev.txt
