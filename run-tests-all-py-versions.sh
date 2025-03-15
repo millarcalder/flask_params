@@ -5,7 +5,6 @@
 # preinstalled for convenience.
 #
 
-# need to use a map
 py3_12_flask_versions=("3.0" "2.3" "2.2" "2.1" "2.0")
 py3_11_flask_versions=("3.0" "2.3" "2.2" "2.1" "2.0")
 py3_10_flask_versions=("3.0" "2.3" "2.2" "2.1" "2.0")
@@ -37,7 +36,17 @@ do
             echo "Building .virtualenv-py$py_ver-flask$flask_ver..."
             pyenv global $py_ver
             python -m venv .virtualenv-py$py_ver-flask$flask_ver/
-            .virtualenv-py$py_ver-flask$flask_ver/bin/pip install flask==$flask_ver.*
+
+            # With version 3.0 of werkzeug some deprecated code was removed. Pip will install the
+            # latest version of werkzeug as flask only specifies the minimum required version of
+            # werkzeug, so since flask<3 is not compatible with werkzeug>=3 we must specify it here.
+            if [[ "$flask_ver" == "3.0" ]]
+            then
+                .virtualenv-py$py_ver-flask$flask_ver/bin/pip install flask==$flask_ver.*
+            else
+                .virtualenv-py$py_ver-flask$flask_ver/bin/pip install "flask==$flask_ver.*" "werkzeug<3"
+            fi
+
             .virtualenv-py$py_ver-flask$flask_ver/bin/pip install -r requirements-dev.txt
             .virtualenv-py$py_ver-flask$flask_ver/bin/pip install -e .
         fi
