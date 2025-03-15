@@ -1,0 +1,5 @@
+[run]
+omit =
+    flask_parameters/tests/*
+    demo/*
+    docs/*
