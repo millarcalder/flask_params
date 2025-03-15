@@ -27,7 +27,7 @@ build:
 	$(PYTHON) -m build
 
 generate-html-docs:
-	$(PYTHON) -m sphinx-build -b html ./docs ./docs/_build
+	$(PYTHON) -m sphinx -b html ./docs ./docs/_build
 
 release-testing: build
 	$(PYTHON) -m twine upload --repository testpypi dist/*
