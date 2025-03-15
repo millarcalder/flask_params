@@ -1,21 +1,14 @@
-import flask
+from flask_parameters import Flask
 
-from flask_parameters import inject_query_params
-from flask_parameters import inject_and_validate_query_params
-from flask_parameters import register_error_handlers
-
-app = flask.Flask(__name__)
-register_error_handlers(app)
+app = Flask(__name__)
 
 
 @app.route("/foo")
-@inject_query_params()
-def foo(arg, kwarg = 123) -> dict:
+def foo(arg, kwarg=123) -> dict:
     return {"arg": arg, "kwarg": kwarg}
 
 
 @app.route("/strict_foo")
-@inject_and_validate_query_params()
 def strict_foo(arg: str, kwarg: int = 123) -> dict:
     return {"arg": arg, "kwarg": kwarg}
 
